@@ -1,10 +1,9 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 
-
 class Settings(BaseSettings):
     # Database settings (from Laravel .env)
-    DATABASE_URL: str = "mysql+pymysql://user:password@localhost/database"
+    DATABASE_URL: str = "mysql+pymysql://root:root@localhost:3308/if-py-dash"
 
     # JWT/Auth settings
     SECRET_KEY: str = "your-secret-key"
