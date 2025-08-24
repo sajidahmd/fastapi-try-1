@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from app.config.database import engine, Base
-from app.controllers import user_controller
+from app.controllers import user_controller, company_controller
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Create database tables working with the existing table so this is commented out
+# Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="My API",
@@ -23,7 +23,7 @@ app.add_middleware(
 
 # Include routers (similar to Laravel Route groups)
 app.include_router(user_controller.router, prefix="/api/v1", tags=["users"])
-
+app.include_router(company_controller.router, prefix="/api/v1", tags=["companies"])
 
 if __name__ == "__main__":
     import uvicorn
